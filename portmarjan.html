@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marjan Habibi | Front-End Developer</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ===== RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: #0A0A0A;
+            color: #F5F0E8;
+            line-height: 1.7;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #6BCB77;
+            border-radius: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 14px 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(107, 203, 119, 0.08);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #F5F0E8;
+            text-decoration: none;
+        }
+        .navbar .logo span {
+            color: #6BCB77;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #B8B0A5;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #F5F0E8;
+        }
+
+        .nav-links .btn-hire {
+            background: #6BCB77;
+            color: #0A0A0A !important;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .nav-links .btn-hire:hover {
+            background: #4CAF50;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(107, 203, 119, 0.25);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: #F5F0E8;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #0A0A0A;
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 50% 30%, rgba(107, 203, 119, 0.04) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 850px;
+        }
+
+        .hero .profile-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+
+        .hero .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(107, 203, 119, 0.3);
+            transition: all 0.4s ease;
+        }
+        .hero .profile-img:hover {
+            border-color: #6BCB77;
+            transform: scale(1.02);
+        }
+
+        .hero .status-ring {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            width: 18px;
+            height: 18px;
+            background: #22c55e;
+            border-radius: 50%;
+            border: 3px solid #0A0A0A;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+        }
+
+        .hero .badge {
+            display: inline-block;
+            background: rgba(107, 203, 119, 0.1);
+            color: #6BCB77;
+            padding: 5px 18px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            border: 1px solid rgba(107, 203, 119, 0.1);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 8vw, 5rem);
+            font-weight: 700;
+            color: #F5F0E8;
+            line-height: 1.05;
+            margin-bottom: 6px;
+        }
+        .hero h1 span {
+            color: #6BCB77;
+            font-style: italic;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1rem, 1.6vw, 1.3rem);
+            color: #B8B0A5;
+            font-weight: 400;
+            margin-bottom: 12px;
+            min-height: 2.2rem;
+        }
+
+        .hero .tagline {
+            color: #8A8275;
+            font-size: 0.95rem;
+            max-width: 550px;
+            margin: 0 auto 28px;
+            line-height: 1.8;
+        }
+
+        .hero .tech-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+        .hero .tech-pills span {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 5px 18px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #B8B0A5;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+        }
+        .hero .tech-pills span:hover {
+            background: rgba(107, 203, 119, 0.1);
+            color: #6BCB77;
+            border-color: rgba(107, 203, 119, 0.15);
+        }
+
+        .hero .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #6BCB77;
+            color: #0A0A0A;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        .btn-primary:hover {
+            background: #4CAF50;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(107, 203, 119, 0.15);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: #F5F0E8;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .btn-secondary:hover {
+            border-color: #6BCB77;
+            color: #6BCB77;
+            transform: translateY(-2px);
+        }
+
+        /* ===== SECTION ===== */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-alt {
+            background: rgba(107, 203, 119, 0.02);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            color: #F5F0E8;
+        }
+        .section-header h2 span {
+            color: #6BCB77;
+        }
+        .section-header p {
+            color: #8A8275;
+            font-size: 1rem;
+            max-width: 500px;
+            margin: 6px auto 0;
+        }
+
+        .section-divider {
+            width: 50px;
+            height: 3px;
+            background: #6BCB77;
+            margin: 10px auto 0;
+            border-radius: 4px;
+        }
+
+        /* ===== PROJECTS ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(107, 203, 119, 0.15);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            background: #1A1A1A;
+        }
+
+        .project-card .card-body {
+            padding: 20px 24px 24px;
+        }
+        .project-card .card-body h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #F5F0E8;
+            margin-bottom: 2px;
+        }
+        .project-card .card-body .org {
+            font-size: 0.78rem;
+            color: #6BCB77;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .project-card .card-body .org i {
+            margin-right: 4px;
+        }
+        .project-card .card-body p {
+            color: #B8B0A5;
+            font-size: 0.88rem;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .project-card .card-body .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+        .project-card .card-body .tech-tags span {
+            background: rgba(107, 203, 119, 0.08);
+            color: #6BCB77;
+            padding: 3px 12px;
+            border-radius: 50px;
+            font-size: 0.68rem;
+            font-weight: 500;
+        }
+
+        .project-card .card-body .card-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .project-card .card-body .card-links a {
+            color: #8A8275;
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .project-card .card-body .card-links a:hover {
+            color: #6BCB77;
+        }
+
+        /* ===== SERVICES ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(107, 203, 119, 0.15);
+            background: rgba(107, 203, 119, 0.03);
+        }
+
+        .service-card .service-icon {
+            font-size: 2.4rem;
+            color: #6BCB77;
+            margin-bottom: 12px;
+        }
+        .service-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #F5F0E8;
+            margin-bottom: 6px;
+        }
+        .service-card p {
+            font-size: 0.88rem;
+            color: #B8B0A5;
+            line-height: 1.6;
+        }
+
+        .services-cta {
+            text-align: center;
+            background: rgba(107, 203, 119, 0.04);
+            border: 1px solid rgba(107, 203, 119, 0.06);
+            border-radius: 16px;
+            padding: 40px 28px;
+            margin-top: 16px;
+        }
+        .services-cta p {
+            color: #B8B0A5;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        .services-cta p strong {
+            color: #6BCB77;
+        }
+
+        /* ===== SKILLS ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px 14px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .skill-item:hover {
+            border-color: rgba(107, 203, 119, 0.15);
+            transform: translateY(-4px);
+            background: rgba(107, 203, 119, 0.03);
+        }
+        .skill-item i {
+            font-size: 2rem;
+            color: #6BCB77;
+            margin-bottom: 6px;
+        }
+        .skill-item span {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: #B8B0A5;
+        }
+
+        /* ===== GITHUB STATS ===== */
+        .github-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .github-stats .stat {
+            text-align: center;
+        }
+        .github-stats .stat .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #6BCB77;
+        }
+        .github-stats .stat .label {
+            color: #8A8275;
+            font-size: 0.8rem;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #050505;
+            padding: 50px 0 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 40px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            margin-bottom: 24px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #F5F0E8;
+        }
+        .footer-brand h3 span {
+            color: #6BCB77;
+        }
+        .footer-brand p {
+            color: #8A8275;
+            font-size: 0.9rem;
+            max-width: 300px;
+            margin-top: 6px;
+            line-height: 1.8;
+        }
+        .footer-brand .contact-info {
+            margin-top: 10px;
+            color: #B8B0A5;
+            font-size: 0.85rem;
+        }
+        .footer-brand .contact-info i {
+            color: #6BCB77;
+            width: 22px;
+        }
+
+        .footer-links h4 {
+            color: #F5F0E8;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+        .footer-links a {
+            display: block;
+            color: #8A8275;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: #6BCB77;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+            color: #B8B0A5;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            text-decoration: none;
+        }
+        .footer-social a:hover {
+            background: #6BCB77;
+            color: #0A0A0A;
+            transform: translateY(-4px);
+            border-color: #6BCB77;
+            box-shadow: 0 8px 30px rgba(107, 203, 119, 0.15);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: #5A5245;
+            font-size: 0.78rem;
+        }
+        .footer-bottom a {
+            color: #6BCB77;
+            text-decoration: none;
+        }
+
+        /* ===== REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 28px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(10px);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 20px;
+                gap: 14px;
+                border-bottom: 1px solid rgba(107, 203, 119, 0.08);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .github-stats {
+                gap: 16px;
+            }
+            .github-stats .stat .number {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Marjan<span>.</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="https://github.com/Marjan-Habibi" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+                <li><a href="#contact" class="btn-hire">Hire Me</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="profile-wrapper">
+                <img src="imges/marjannn.png" alt="Marjan Habibi" class="profile-img" />
+                <div class="status-ring"></div>
+            </div>
+
+            <div class="badge"><i class="fas fa-code"></i> &nbsp; Available for Freelance</div>
+
+            <h1>Marjan <span>Habibi</span></h1>
+            <p class="subtitle" id="typed-text"></p>
+            <p class="tagline">
+                I build modern, responsive, and high-performance web applications
+                with clean code and great user experiences.
+            </p>
+
+            <div class="tech-pills">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                <span>TypeScript</span><span>React</span><span>Next.js</span>
+                <span>Tailwind</span><span>Bootstrap</span>
+            </div>
+
+            <div class="btn-group">
+                <a href="#projects" class="btn-primary"><i class="fas fa-eye"></i> View My Work</a>
+                <a href="https://github.com/Marjan-Habibi" target="_blank" class="btn-secondary"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section class="section" id="projects">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>My <span>Projects</span></h2>
+                <p>Real-world projects built for organizations and clients</p>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="projects-grid">
+
+                <!-- KaarYab -->
+                <div class="project-card reveal">
+                    <img src="imges/kaaryab.png" alt="KaarYab" class="card-img" />
+                    <div class="card-body">
+                        <h3>KaarYab Afghanistan</h3>
+                        <div class="org"><i class="fas fa-building"></i> WFE Organization</div>
+                        <p>Job-seeking platform connecting Afghan talent with opportunities. Built with TypeScript and React.</p>
+                        <div class="tech-tags">
+                            <span>TypeScript</span><span>React</span><span>Tailwind</span>
+                        </div>
+                        <div class="card-links">
+                            <a href="https://github.com/Marjan-Habibi/KaarYab-Afghanistan" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AfghanAria -->
+                <div class="project-card reveal">
+                    <img src="imges/ariaschool.png" alt="AfghanAria" class="card-img" />
+                    <div class="card-body">
+                        <h3>AfghanAria School</h3>
+                        <div class="org"><i class="fas fa-school"></i> AfghanAria Private School</div>
+                        <p>Official website for AfghanAria school — modern, informative, and fully responsive.</p>
+                        <div class="tech-tags">
+                            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                        </div>
+                        <div class="card-links">
+                            <a href="https://afghanaria.onrender.com" target="_blank">
+                                <i class="fas fa-globe"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/Marjan-Habibi/afghanaria" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROT.AI -->
+                <div class="project-card reveal">
+                    <img src="imges/logo.png" alt="ROT.AI" class="card-img" />
+                    <div class="card-body">
+                        <h3>ROT.AI</h3>
+                        <div class="org"><i class="fas fa-robot"></i> AI-Powered Tool</div>
+                        <p>AI-powered tool with a clean, intuitive interface focused on user experience.</p>
+                        <div class="tech-tags">
+                            <span>HTML</span><span>JavaScript</span><span>Node.js</span>
+                        </div>
+                        <div class="card-links">
+                            <a href="https://github.com/Marjan-Habibi/ROT.AI" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maison Noir -->
+                <div class="project-card reveal">
+                    <img src="imges/stor.png" alt="Maison Noir" class="card-img" />
+                    <div class="card-body">
+                        <h3>Maison Noir Premium UI</h3>
+                        <div class="org"><i class="fas fa-utensils"></i> Restaurant</div>
+                        <p>Premium, elegant UI for a high-end restaurant. Sophisticated design with attention to detail.</p>
+                        <div class="tech-tags">
+                            <span>HTML</span><span>CSS</span>
+                        </div>
+                        <div class="card-links">
+                            <a href="https://github.com/Marjan-Habibi/maison-noir-premium-ui" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WFE -->
+                <div class="project-card reveal">
+                    <img src="imges/wfe.png" alt="WFE" class="card-img" />
+                    <div class="card-body">
+                        <h3>WFE Organization</h3>
+                        <div class="org"><i class="fas fa-globe"></i> Women For Education</div>
+                        <p>Official platform for WFE — empowering Afghan girls through education, web development, and English classes.</p>
+                        <div class="tech-tags">
+                            <span>HTML</span><span>CSS</span>
+                        </div>
+                        <div class="card-links">
+                            <a href="https://wfe.onrender.com" target="_blank">
+                                <i class="fas fa-globe"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/Marjan-Habibi/wfe-organization" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pocket Classroom -->
+                <div class="project-card reveal">
+                    <img src="imges/pocket.png" alt="Pocket Classroom" class="card-img" />
+                    <div class="card-body">
+                        <h3>Pocket Classroom</h3>
+                        <div class="org"><i class="fas fa-graduation-cap"></i> Educational Platform</div>
+                        <p>Interactive learning platform for students and teachers with engaging UI and smooth experience.</p>
+                        <div class="tech-tags">
+                            <span>JavaScript</span><span>CSS</span>
+                        </div>
+                        <div class="card-links">
+                            <a href="https://github.com/Marjan-Habibi/Pocket_Classroom" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="section section-alt" id="services">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>What I <span>Can Build</span></h2>
+                <p>From websites to web apps — I bring your ideas to life</p>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-globe"></i></div>
+                    <h3>Static Websites</h3>
+                    <p>Fast, responsive, and pixel-perfect landing pages, portfolios, and company sites.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <h3>E-Commerce Stores</h3>
+                    <p>Fully functional online stores with product listings, cart, and checkout systems.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Mobile-Ready Apps</h3>
+                    <p>Responsive web apps that work seamlessly on any device — phone, tablet, or desktop.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>Custom Dashboards</h3>
+                    <p>Admin panels, analytics dashboards, and internal tools with clean UI and real-time data.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-robot"></i></div>
+                    <h3>AI &amp; API Integrations</h3>
+                    <p>Connect your frontend to AI tools, REST APIs, and blockchain backends like Web3.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-code-branch"></i></div>
+                    <h3>Code Maintenance</h3>
+                    <p>Clean up, refactor, and document existing codebases for long-term maintainability.</p>
+                </div>
+            </div>
+
+            <div class="services-cta reveal">
+                <p>Let's build something great together — <strong>I'm available for freelance work!</strong></p>
+                <a href="https://www.freelancer.com/u/marjanhabibi90?frm=marjanhabibi90&sb=t" target="_blank" class="btn-primary">
+                    <i class="fas fa-user-tie"></i> Hire Me on Freelancer
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section class="section" id="skills">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Tech <span>Stack</span></h2>
+                <p>Technologies I work with daily</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-item reveal"><i class="fab fa-html5"></i><span>HTML5</span></div>
+                <div class="skill-item reveal"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+                <div class="skill-item reveal"><i class="fab fa-js"></i><span>JavaScript</span></div>
+                <div class="skill-item reveal"><i class="fab fa-react"></i><span>React</span></div>
+                <div class="skill-item reveal"><i class="fas fa-code"></i><span>TypeScript</span></div>
+                <div class="skill-item reveal"><i class="fab fa-bootstrap"></i><span>Bootstrap</span></div>
+                <div class="skill-item reveal"><i class="fas fa-wind"></i><span>Tailwind</span></div>
+                <div class="skill-item reveal"><i class="fas fa-code"></i><span>Next.js</span></div>
+                <div class="skill-item reveal"><i class="fab fa-git-alt"></i><span>Git</span></div>
+            </div>
+
+            <div class="github-stats reveal">
+                <div class="stat">
+                    <div class="number">59</div>
+                    <div class="label">Repositories</div>
+                </div>
+                <div class="stat">
+                    <div class="number">17</div>
+                    <div class="label">Followers</div>
+                </div>
+                <div class="stat">
+                    <div class="number">4</div>
+                    <div class="label">Stars</div>
+                </div>
+                <div class="stat">
+                    <div class="number">11</div>
+                    <div class="label">Following</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Marjan <span>Habibi</span></h3>
+                    <p>Front-End Developer crafting clean, responsive, and user-centered web experiences.</p>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> marjanhabibibi875@gmail.com</p>
+                        <p><i class="fas fa-user"></i> Freelancer: marjanhabibi90</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Available Worldwide · Remote</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="#projects">Projects</a>
+                    <a href="#services">Services</a>
+                    <a href="#skills">Skills</a>
+                    <a href="https://github.com/Marjan-Habibi" target="_blank">GitHub</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <div class="footer-social">
+                        <a href="https://github.com/Marjan-Habibi" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/posts/marjan-habibi-80543a356_rotai-artificialintelligence-brandidentity-share-7475177130591420416-nkI6/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFiyiwUBl3N-UrET9ovmMxTVTwAC7tkg3es" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://x.com/marjanhabibi90?s=21" target="_blank" aria-label="X (Twitter)">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                        <a href="https://t.me/marjanhabibi0" target="_blank" aria-label="Telegram">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                        <a href="https://www.freelancer.com/u/marjanhabibi90?frm=marjanhabibi90&sb=t" target="_blank" aria-label="Freelancer">
+                            <i class="fas fa-user-tie"></i>
+                        </a>
+                    </div>
+                    <p style="color:#5A5245; font-size:0.8rem; margin-top:16px;">
+                        <i class="fas fa-code" style="color:#6BCB77;"></i>
+                        Crafted with clean code &amp; attention to detail
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 <a href="#home">Marjan Habibi</a>. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ===== 1. TYPEWRITER =====
+        const texts = [
+            'Front-End Web Developer',
+            'React & Next.js Specialist',
+            'UI/UX Enthusiast',
+            'Clean Code Advocate'
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typedElement = document.getElementById('typed-text');
+
+        function typeEffect() {
+            const currentText = texts[textIndex];
+            if (isDeleting) {
+                typedElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                setTimeout(() => { isDeleting = true; }, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+            }
+            setTimeout(typeEffect, isDeleting ? 80 : 120);
+        }
+        typeEffect();
+
+        // ===== 2. REVEAL ON SCROLL =====
+        const reveals = document.querySelectorAll('.reveal');
+
+        function revealOnScroll() {
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                const revealPoint = 100;
+
+                if (elementTop < windowHeight - revealPoint) {
+                    el.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // ===== 3. HAMBURGER =====
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
